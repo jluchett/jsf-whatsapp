@@ -11,7 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/whatsapp")
+@ServerEndpoint("/chat")
 public class WhatsappWebSocket {
 
   private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
