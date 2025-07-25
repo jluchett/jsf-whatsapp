@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ApplicationScoped
 public class WhatsappApiService {
-  private static final String API_URL = "https://graph.facebook.com/v13.0/";
+  private static final String API_URL = "https://graph.facebook.com/v22.0/";
   private String accessToken = "TU_TOKEN_DE_ACCESO";
   private String phoneNumberId = "ID_DE_NUMERO_TELEFONO";
 
