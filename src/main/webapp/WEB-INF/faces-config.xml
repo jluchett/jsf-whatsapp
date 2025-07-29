@@ -5,10 +5,6 @@
               http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
     
-    <application>
-        <resource-handler>org.primefaces.application.DialogAwareResourceHandler</resource-handler>
-    </application>
-    
     <managed-bean>
         <managed-bean-name>whatsappChatBacking</managed-bean-name>
         <managed-bean-class>com.adur.transkal.frw.whatsapp.backing.WhatsappChatBacking</managed-bean-class>
