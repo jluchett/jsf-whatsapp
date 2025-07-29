@@ -10,8 +10,8 @@
     </application>
     
     <managed-bean>
-        <managed-bean-name>chatBean</managed-bean-name>
-        <managed-bean-class>com.adur.transkal.frw.whatsapp.beans.ChatBean</managed-bean-class>
+        <managed-bean-name>whatsappChatBacking</managed-bean-name>
+        <managed-bean-class>com.adur.transkal.frw.whatsapp.backing.WhatsappChatBacking</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 </faces-config>
