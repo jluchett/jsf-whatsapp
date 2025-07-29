@@ -5,6 +5,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.adur.transkal.frw.whatsapp.util.ConfigUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -20,8 +23,8 @@ public class WhatsappWebhook {
       @QueryParam("hub.mode") String mode,
       @QueryParam("hub.challenge") String challenge,
       @QueryParam("hub.verify_token") String verifyToken) {
-    
-    String expectedToken = "TOKEN_VERIFICATION";
+
+    String expectedToken = ConfigUtil.getProperty("TOKEN_VERIFICATION");
 
     if (mode != null && verifyToken != null){
       if (mode.equals("subscribe") && verifyToken.equals(expectedToken)) {

@@ -14,13 +14,14 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import com.adur.transkal.frw.whatsapp.util.ConfigUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ApplicationScoped
 public class WhatsappApiService {
-  private static final String API_URL = "https://graph.facebook.com/v22.0/";
-  private String accessToken = "TOKEN_DE_ACCESO";
-  private String phoneNumberId = "ID_DE_NUMERO_TELEFONO";
+  private static final String API_URL = "https://graph.facebook.com/v23.0/";
+  private String accessToken = ConfigUtil.getProperty("TOKEN_DE_ACCESO");
+  private String phoneNumberId = ConfigUtil.getProperty("ID_DE_NUMERO_TELEFONO");
 
 
   /**
