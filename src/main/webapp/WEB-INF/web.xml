@@ -29,7 +29,7 @@
     
     <servlet-mapping>
         <servlet-name>WebSocket Servlet</servlet-name>
-        <url-pattern>/chat</url-pattern>
+        <url-pattern>/chatSocket</url-pattern>
     </servlet-mapping>
     
     <!-- Configuración para JAX-RS (Webhook) -->

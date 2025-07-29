@@ -3,6 +3,7 @@ package com.adur.transkal.frw.whatsapp.backing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -25,6 +26,8 @@ public class WhatsappChatBacking implements Serializable {
 
     private List<WhatsappChat> chats;
     private WhatsappChat selectedChat;
+    private String messageText;
+    private String searchTerm;
     
     @Inject
     private WhatsappApiService whatsappApiService;
@@ -38,30 +41,41 @@ public class WhatsappChatBacking implements Serializable {
         WhatsappContact contact2 = new WhatsappContact("2", "Cliente 2", "0987654321");
 
         WhatsappChat chat1 = new WhatsappChat("1", contact1);
-        chat1.addMessage(new WhatsappMessage("Hola, ¿cómo estás?", "contact", "10:00 AM"));
+        chat1.addMessage(new WhatsappMessage("Hola, ¿cómo estás?", "contact", getCurrentTime()));
 
         WhatsappChat chat2 = new WhatsappChat("2", contact2);
-        chat2.addMessage(new WhatsappMessage("Buenos días", "contact", "9:30 AM"));
+        chat2.addMessage(new WhatsappMessage("Buenos días", "contact", getCurrentTime()));
 
         chats.add(chat1);
         chats.add(chat2);
-        selectedChat = chat1; // Seleccionar el primer chat por defecto
+        selectedChat = chat1;
     }
 
     public void sendMessageText(String text){
-        if (text != null && !text.trim().isEmpty()) {
-            WhatsappMessage message = new WhatsappMessage(text, "user", getCurrentTime());
+        if (messageText != null && !messageText.trim().isEmpty()) {
+            WhatsappMessage message = new WhatsappMessage(messageText, "user", getCurrentTime());
             selectedChat.addMessage(message);
-
+            
             try {
-                // Enviar el mensaje a través del servicio de API de WhatsApp
-                whatsappApiService.sendTextMessage(selectedChat.getContact().getPhoneNumber(), text);
-                
+                whatsappApiService.sendTextMessage(selectedChat.getContact().getPhoneNumber(), messageText);
             } catch (Exception e) {
                 e.printStackTrace();
+                // Manejar error
             }
+            
+            messageText = ""; // Limpiar el campo de texto
         }
     }
+
+    public List<WhatsappChat> getFilteredChats() {
+        if (searchTerm == null || searchTerm.isEmpty()) {
+            return chats;
+        }
+        return chats.stream()
+                  .filter(c -> c.getContact().getName().toLowerCase().contains(searchTerm.toLowerCase()))
+                  .collect(Collectors.toList());
+    }
+
 
     private String getCurrentTime() {
         return java.time.LocalTime.now().format(
@@ -70,16 +84,11 @@ public class WhatsappChatBacking implements Serializable {
     }
 
     // Getters and Setters
-    public List<WhatsappChat> getChats() {
-        return chats;
-    }
-
-    public WhatsappChat getSelectedChat() {
-        return selectedChat;
-    }
-
-    public void setSelectedChat(WhatsappChat selectedChat) {
-        this.selectedChat = selectedChat;
-    }
+    public List<WhatsappChat> getChats() { return chats; }
+    public WhatsappChat getSelectedChat() { return selectedChat; }
+    public String getMessageText() { return messageText; }
+    public void setMessageText(String messageText) { this.messageText = messageText; }
+    public String getSearchTerm() { return searchTerm; }
+    public void setSearchTerm(String searchTerm) { this.searchTerm = searchTerm; }
   
 }
