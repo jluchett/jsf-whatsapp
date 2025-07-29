@@ -25,6 +25,8 @@ public class WhatsappChat {
         return messages.get(messages.size() - 1).getText();
     }
 
+    
+
     // Getters and Setters
     public String getId() {
         return id;

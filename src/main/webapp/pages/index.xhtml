@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>WhatsApp Web</title>
+    <title>WhatsApp JSF</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- CSS -->
@@ -17,224 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <!-- JavaScript -->
-    <h:outputScript library="js" name="scripts.js" target="body" />
+    <h:outputScript library="js" name="script.js" target="body" />
     
-    <style type="text/css">
-        /* Estilos base */
-        :root {
-            --primary-color: #25D366;
-            --secondary-color: #128C7E;
-            --background-color: #e5ddd5;
-            --chat-bg-color: #e6ffe6;
-            --contact-bg-color: #ffffff;
-            --text-color: #333333;
-            --timestamp-color: #888888;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-container {
-            display: flex;
-            height: calc(100vh - 60px);
-        }
-        
-        .sidebar {
-            width: 30%;
-            background-color: var(--contact-bg-color);
-            border-right: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .sidebar-header {
-            padding: 15px;
-            background-color: #f0f2f5;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .search-bar {
-            padding: 10px;
-            background-color: #f0f2f5;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: none;
-            outline: none;
-        }
-        
-        .chat-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-        
-        .chat-item {
-            display: flex;
-            padding: 12px;
-            border-bottom: 1px solid #f0f2f5;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .chat-item:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .chat-item.active {
-            background-color: #e5e5e5;
-        }
-        
-        .chat-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 12px;
-        }
-        
-        .chat-info {
-            flex: 1;
-            overflow: hidden;
-        }
-        
-        .chat-name {
-            margin: 0;
-            font-size: 16px;
-            color: var(--text-color);
-        }
-        
-        .chat-last-message {
-            margin: 5px 0 0;
-            font-size: 14px;
-            color: var(--timestamp-color);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .chat-timestamp {
-            font-size: 12px;
-            color: var(--timestamp-color);
-        }
-        
-        .chat-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-header {
-            padding: 15px;
-            background-color: #f0f2f5;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e7195b6b733d9110b408f075d.png');
-            background-repeat: repeat;
-        }
-        
-        .message {
-            max-width: 70%;
-            padding: 8px 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            position: relative;
-            word-wrap: break-word;
-        }
-        
-        .message.user {
-            background-color: var(--chat-bg-color);
-            margin-left: auto;
-            border-top-right-radius: 0;
-        }
-        
-        .message.contact {
-            background-color: white;
-            margin-right: auto;
-            border-top-left-radius: 0;
-        }
-        
-        .message-time {
-            display: block;
-            font-size: 11px;
-            color: var(--timestamp-color);
-            text-align: right;
-            margin-top: 4px;
-        }
-        
-        .message-input-container {
-            padding: 10px;
-            background-color: #f0f2f5;
-            border-top: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-        }
-        
-        .message-input {
-            flex: 1;
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: none;
-            outline: none;
-            margin-right: 10px;
-        }
-        
-        .send-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .send-button:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-            }
-            
-            .chat-area {
-                display: none;
-            }
-            
-            .chat-area.active {
-                display: flex;
-            }
-        }
-    </style>
 </h:head>
 
 <h:body>
@@ -242,7 +26,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h2>WhatsApp Web</h2>
+                <h2>WhatsApp JSF</h2>
                 <i class="fas fa-ellipsis-v"></i>
             </div>
             
@@ -310,53 +94,5 @@
 
     <h:inputHidden id="selectedChatId" value="#{whatsappChatBacking.selectedChat.id}" />
 
-    <script type="text/javascript">
-        // WebSocket connection
-        var socket = new WebSocket("ws://" + window.location.host + "#{request.contextPath}/chatSocket");
-        
-        socket.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            if (data.type === "new_message") {
-                // Actualizar la interfaz con el nuevo mensaje
-                var chatMessages = document.getElementById('chatMessages');
-                var messageDiv = document.createElement('div');
-                messageDiv.className = 'message ' + (data.sender === 'user' ? 'user' : 'contact');
-                messageDiv.innerHTML = '<p>' + data.text + '</p><span class="message-time">' + data.time + '</span>';
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        };
-        
-        function selectChat(chatId) {
-            // Actualizar el chat seleccionado via AJAX
-            var form = document.createElement('form');
-            form.style.display = 'none';
-            form.method = 'post';
-            form.action = '#{request.contextPath}/pages/index.xhtml';
-            
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'selectedChatId';
-            input.value = chatId;
-            
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
-        }
-        
-        function sendMessage() {
-            // El envío real se maneja via JSF, esta función solo asegura el scroll
-            var chatMessages = document.getElementById('chatMessages');
-            setTimeout(function() {
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 100);
-        }
-        
-        // Auto-scroll al cargar
-        window.onload = function() {
-            var chatMessages = document.getElementById('chatMessages');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        };
-    </script>
 </h:body>
 </html>

@@ -51,7 +51,7 @@ public class WhatsappChatBacking implements Serializable {
         selectedChat = chat1;
     }
 
-    public void sendMessageText(String text){
+     public void sendMessage() {
         if (messageText != null && !messageText.trim().isEmpty()) {
             WhatsappMessage message = new WhatsappMessage(messageText, "user", getCurrentTime());
             selectedChat.addMessage(message);
@@ -67,13 +67,24 @@ public class WhatsappChatBacking implements Serializable {
         }
     }
 
+    public void selectChat(String chatId) {
+        selectedChat = chats.stream()
+                          .filter(c -> c.getId().equals(chatId))
+                          .findFirst()
+                          .orElse(null);
+    }
+    
     public List<WhatsappChat> getFilteredChats() {
         if (searchTerm == null || searchTerm.isEmpty()) {
+            System.out.println("No search term provided, returning all chats.");
             return chats;
+           
         }
+        System.out.println("Filtering chats with search term: " + searchTerm);
         return chats.stream()
-                  .filter(c -> c.getContact().getName().toLowerCase().contains(searchTerm.toLowerCase()))
-                  .collect(Collectors.toList());
+                  .filter(c -> c.getContact().getName().toLowerCase().contains(searchTerm.toLowerCase()) || 
+                             c.getLastMessage().toLowerCase().contains(searchTerm.toLowerCase()))
+                             .collect(Collectors.toList());
     }
 
 

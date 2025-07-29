@@ -45,6 +45,14 @@ function updateChatList(chatId, lastMessage) {
     });
 }
 
+function sendMessage() {
+            // El envío real se maneja via JSF, esta función solo asegura el scroll
+            var chatMessages = document.getElementById('chatMessages');
+            setTimeout(function() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 100);
+        }
+
 // Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
     initWebSocket();
@@ -66,3 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Auto-scroll al cargar
+        window.onload = function() {
+            var chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };

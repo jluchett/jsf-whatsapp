@@ -11,6 +11,15 @@ public class WhatsappMessage {
         this.time = time;
     }
 
+    @Override
+    public String toString() {
+        return "WhatsappMessage{" +
+                "text='" + text + '\'' +
+                ", sender='" + sender + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
     // Getters and Setters
     public String getText() {
         return text;
